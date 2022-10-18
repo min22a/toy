@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.toy.mapper.BoardMapper">
+
+<select id="selectAll">
+	SELECT 
+			NO, USERNAME, TITLE, 
+			
+			REGIST_DATE, LAST_DATE, VIEWCNT,
+			
+			BGNDE, ENDDE 
+	
+	FROM BOARD 
+			 
+</select>
+
+<select id="selectOne">
+	SELECT 
+			NO, USERNAME, TITLE,
+			
+			CONTENT, BGNDE, ENDDE,
+			
+			REGIST_DATE, LAST_DATE, VIEWCNT
+	
+	FROM BOARD 
+	
+	WHERE NO = #{no}
+
+</select>
+
+<insert id="insert">
+	INSERT INTO
+				BOARD(USERNAME, TITLE, CONTENT,
+				
+			    BGNDE, ENDDE,  NOTICEAT, 
+			    
+			    SECRETAT)
+	
+	VALUES ( #{username}, #{title}, #{content}, 
+	
+			#{bgnde}, #{endde}, #{noticeat},
+			
+			#{secretat} )
+</insert>
+
+
+<update id="update">
+	UPDATE SET BOARD 
+				TITLE = #{title}, CONTENT = #{content}, 
+				
+				BGNDE = #{bgnde}, ENDDE = #{endde}, 
+				
+				NOTICEAT = #{noticeat}, SECRETAT = #{secretat}
+				
+	WHERE NO = #{NO}
+	
+</update>
+
+<delete id="delete">
+	DELETE FROM BOARD 
+	
+	WHRER NO = #{no}
+
+</delete>
+
+
+<update id="viewcnt">
+	UPDATE SET BOARD 
+					
+					VIEWCNT = VIEWCNT + 1
+	
+	WHERE NO = #{no}
+
+</update>
+
+
+</mapper>
